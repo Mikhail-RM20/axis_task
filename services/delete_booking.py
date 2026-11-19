@@ -1,16 +1,14 @@
-import logging.config
+import logging
 
-from core import dict_config
+
 from database import Booking, BookingStatus, Person
 from fastapi import HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-logging.config.dictConfig(dict_config)
-
 main_log = logging.getLogger("services_logger")
-main_log.setLevel(logging.DEBUG)
+
 
 
 async def delete_one_booking(
@@ -53,7 +51,7 @@ async def delete_one_booking(
                 detail="Booking not found",
             )
 
-        booking, person = row.tuple()
+        booking, person = row
 
         if booking.status == BookingStatus.cancelled:
             main_log.info(
@@ -73,7 +71,7 @@ async def delete_one_booking(
         await db.refresh(booking)
         await db.refresh(person)
         main_log.debug(
-            "Booking и Person обновлены из БД: booking_id=%s", booking.id
+            "Booking и Person обновлены в БД: booking_id=%s", booking.id
         )
 
         return booking, person

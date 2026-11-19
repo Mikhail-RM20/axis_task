@@ -1,4 +1,4 @@
-import logging.config
+import logging
 
 from core import dict_config
 from database import Booking, BookingStatus, Person
@@ -8,10 +8,8 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-logging.config.dictConfig(dict_config)
-
 main_log = logging.getLogger("services_logger")
-main_log.setLevel(logging.DEBUG)
+
 
 
 async def create_new_booking(
