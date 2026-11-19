@@ -1,4 +1,4 @@
-import logging.config
+import logging
 from datetime import date
 from typing import Optional
 
@@ -9,10 +9,8 @@ from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-logging.config.dictConfig(dict_config)
-
 main_log = logging.getLogger("services_logger")
-main_log.setLevel(logging.DEBUG)
+
 
 
 async def get_all_bookings(

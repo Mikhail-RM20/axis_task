@@ -1,4 +1,4 @@
-import logging.config
+import logging
 from datetime import date
 from typing import Optional
 
@@ -9,10 +9,8 @@ from schemas import BookingCreateOut
 from services import get_all_bookings
 from sqlalchemy.ext.asyncio import AsyncSession
 
-logging.config.dictConfig(dict_config)
-
 main_log = logging.getLogger("route_logger")
-main_log.setLevel(logging.DEBUG)
+
 
 router = APIRouter()
 
@@ -66,14 +64,6 @@ async def get_bookings(
         return []
 
     return [
-        BookingCreateOut(
-            id=booking.id,
-            name=person.name,
-            phone=person.phone,
-            booking_date=booking.booking_date,
-            booking_time=booking.booking_time,
-            guests=booking.guests,
-            status=booking.status,
-        )
+        BookingCreateOut.from_models(booking, person)
         for booking, person in result_get_bookings
     ]
