@@ -1,4 +1,4 @@
-import logging.config
+import logging
 
 from core import dict_config
 from database import Booking, Person
@@ -7,10 +7,9 @@ from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-logging.config.dictConfig(dict_config)
 
 main_log = logging.getLogger("services_logger")
-main_log.setLevel(logging.DEBUG)
+
 
 
 async def get_booking_id(
@@ -51,7 +50,7 @@ async def get_booking_id(
                 detail="Booking not found",
             )
 
-        booking, person = row.tuple()
+        booking, person = row
         main_log.info(
             "Бронь найдена: booking_id=%s, person_id=%s, name=%s",
             booking.id,

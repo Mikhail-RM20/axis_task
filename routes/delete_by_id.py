@@ -1,16 +1,12 @@
-import logging.config
-
-from core import dict_config
+import logging
 from database import get_db
 from fastapi import APIRouter, Depends, status
 from schemas import BookingCreateOut
 from services import delete_one_booking
 from sqlalchemy.ext.asyncio import AsyncSession
 
-logging.config.dictConfig(dict_config)
-
 main_log = logging.getLogger("route_logger")
-main_log.setLevel(logging.DEBUG)
+
 
 router = APIRouter()
 
@@ -57,12 +53,4 @@ async def delete_booking_by_id(
         person.name,
     )
 
-    return BookingCreateOut(
-        id=booking.id,
-        name=person.name,
-        phone=person.phone,
-        booking_date=booking.booking_date,
-        booking_time=booking.booking_time,
-        guests=booking.guests,
-        status=booking.status,
-    )
+    return BookingCreateOut.from_models(booking, person)
