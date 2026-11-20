@@ -3,7 +3,7 @@ line-length = 79
 target-version = "py312"
 
 exclude = [
-    ".venv1",
+    ".venv3",
     ".git",
     "__pycache__",
     "tests"
@@ -38,8 +38,7 @@ docstring-code-line-length = 79
 [tool.mypy]
 python_version = "3.12"
 exclude = [
-    "^\\.venv1/",
-    "^\\.venv2/",
+    "^\\.venv3/",
     "^\\.git/",
     "^__pycache__/",
     "^tests/",

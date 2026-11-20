@@ -1,11 +1,12 @@
-from datetime import date, time, timedelta, datetime
+from datetime import date, datetime, time, timedelta
 
-from database import BookingStatus, Booking, Person
+from database import Booking, BookingStatus, Person
 from pydantic import (
     BaseModel,
     ConfigDict,
     Field,
-    field_validator, model_validator,
+    field_validator,
+    model_validator,
 )
 
 BOOKING_TIMES = {
@@ -82,11 +83,8 @@ class BookingCreateIn(BaseModel):
         now = datetime.now()
         booking_dt = datetime.combine(self.booking_date, self.booking_time)
         if booking_dt <= now:
-            raise ValueError(
-                "Нельзя забронировать столик на прошедшее время."
-            )
+            raise ValueError("Нельзя забронировать столик на прошедшее время.")
         return self
-
 
 
 class BookingCreateOut(BaseModel):
