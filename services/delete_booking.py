@@ -1,6 +1,5 @@
 import logging
 
-
 from database import Booking, BookingStatus, Person
 from fastapi import HTTPException, status
 from sqlalchemy import select
@@ -8,7 +7,6 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 main_log = logging.getLogger("services_logger")
-
 
 
 async def delete_one_booking(

@@ -2,7 +2,6 @@ import logging
 from datetime import date
 from typing import Optional
 
-from core import dict_config
 from database import get_db
 from fastapi import APIRouter, Depends, Query, status
 from schemas import BookingCreateOut

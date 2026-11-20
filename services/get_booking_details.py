@@ -1,15 +1,12 @@
 import logging
 
-from core import dict_config
 from database import Booking, Person
 from fastapi import HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-
 main_log = logging.getLogger("services_logger")
-
 
 
 async def get_booking_id(

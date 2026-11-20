@@ -1,6 +1,5 @@
 import logging
 
-from core import dict_config
 from database import Booking, BookingStatus, Person
 from fastapi import HTTPException, status
 from schemas import BookingCreateIn
@@ -9,7 +8,6 @@ from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 main_log = logging.getLogger("services_logger")
-
 
 
 async def create_new_booking(

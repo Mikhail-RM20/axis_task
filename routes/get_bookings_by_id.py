@@ -1,4 +1,5 @@
 import logging
+
 from database import get_db
 from fastapi import APIRouter, Depends, status
 from schemas import BookingCreateOut
