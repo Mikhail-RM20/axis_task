@@ -4,7 +4,7 @@ from enum import Enum as PyEnum
 from sqlalchemy import Date, Enum, ForeignKey, Integer, String, Time
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from .base import Base
+from database import Base
 
 
 class BookingStatus(str, PyEnum):
